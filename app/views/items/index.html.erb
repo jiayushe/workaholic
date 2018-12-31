@@ -1,0 +1,28 @@
+<h1>Workaholic</h1>
+<h2>Listing All Tasks</h2>
+
+<%= link_to 'New Task', new_item_path %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Details</th>
+    <th>Deadline</th>
+    <th>Level of Importance</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.title %></td>
+      <td><%= item.details %></td>
+      <td><%= item.deadline %></td>
+      <td><%= item.level_of_importance %></td>
+      <td><%= link_to 'Show', item_path(item) %></td>
+      <td><%= link_to 'Edit', edit_item_path(item) %></td>
+      <td><%= link_to 'Delete', item_path(item),
+	      method: :delete,
+	      data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

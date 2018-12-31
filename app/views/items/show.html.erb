@@ -1,0 +1,29 @@
+<h1>Workaholic</h1>
+<p>
+  <strong>Title:</strong>
+  <%= @item.title %>
+</p>
+ 
+<p>
+  <strong>Details:</strong>
+  <%= @item.details %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @item.deadline %>
+</p>
+
+<p>
+  <strong>Level of Importance:</strong>
+  <%= @item.level_of_importance %>
+</p>
+
+<h3>Remarks</h3>
+<%= render @item.remarks %>
+
+<h3>Add a remark:</h3>
+<%= render 'remarks/form' %>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

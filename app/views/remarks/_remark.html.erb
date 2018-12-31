@@ -1,0 +1,15 @@
+<p>
+  <strong>Remark:</strong>
+  <%= remark.body %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= remark.date %>
+</p>
+
+<p>
+  <%= link_to 'Delete Remark', [remark.item, remark],
+               method: :delete,
+               data: { confirm: 'Are you sure to delete this comment?' } %>
+</p>

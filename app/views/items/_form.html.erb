@@ -1,0 +1,40 @@
+<%= form_with model: @item, local: true do |form| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@item.errors.count, "error") %> prohibited
+        this task from being saved:
+      </h2>
+      <ul>
+        <% @item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :details %><br>
+    <%= form.text_area :details %>
+  </p>
+
+  <p>
+    <%= form.label :deadline %><br>
+    <%= form.text_area:deadline %>
+  </p>
+
+  <p>
+    <%= form.label :level_of_importance %><br>
+    <%= form.text_area :level_of_importance %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
