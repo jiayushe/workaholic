@@ -12,17 +12,20 @@
 
 ActiveRecord::Schema.define(version: 2019_01_26_144042) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "item_categories", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "category_id", null: false
+    t.bigint "item_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_item_categories_on_category_id"
@@ -36,14 +39,14 @@ ActiveRecord::Schema.define(version: 2019_01_26_144042) do
     t.integer "level_of_importance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "remarks", force: :cascade do |t|
     t.text "body"
     t.string "date"
-    t.integer "item_id"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_remarks_on_item_id"
@@ -58,4 +61,5 @@ ActiveRecord::Schema.define(version: 2019_01_26_144042) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  add_foreign_key "remarks", "items"
 end
