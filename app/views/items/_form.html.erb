@@ -1,10 +1,12 @@
-<%= form_with model: @item, local: true do |form| %>
+<%= form_for @item, html: { id:"needs-validation", novalidate: "novalidate" }  do |form| %>
   <% if @item.errors.any? %>
     <div id="error_explanation">
-      <h2>
+      <h4>
+        <strong>
         <%= pluralize(@item.errors.count, "error") %> prohibited
-        this task from being saved:
-      </h2>
+	this task from being saved:
+	</strong>
+      </h4>
       <ul>
         <% @item.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -13,28 +15,62 @@
     </div>
   <% end %>
 
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
-
-  <p>
-    <%= form.label :details %><br>
-    <%= form.text_area :details %>
-  </p>
-
-  <p>
-    <%= form.label :deadline %><br>
-    <%= form.text_area:deadline %>
-  </p>
-
-  <p>
-    <%= form.label :level_of_importance %><br>
-    <%= form.text_area :level_of_importance %>
-  </p>
-
-  <p>
-    <%= form.submit %>
-  </p>
+  <div class="form-row">
+    <div class="col-md">
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, 
+            class: 'form-control', 
+            placeholder: 'Example Task', 
+            required: true %>
+        <div class="invalid-feedback">
+          Please provide a valid title.
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <%= form.label :deadline %>
+          <%= form.text_field :deadline, 
+              class: 'form-control', 
+              placeholder: 'dd/mm/yyyy', 
+              data: {provide: "datepicker", date_format: 'dd/mm/yyyy'}, 
+              required: true, readonly: true %>
+          <div class="invalid-feedback">
+            Please provide a valid deadline.
+          </div>
+        </div>
+        <div class="form-group col">
+          <%= form.label :priority %>
+          <%= form.number_field :level_of_importance, 
+              class: 'form-control', 
+              placeholder: 'Choose between 1 to 10.', 
+              required: true, 
+              min: 1, max: 10 %>
+          <div class="invalid-feedback">
+            Please provide a valid priority, ranging from 1 to 10.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md">
+    <%= form.label :details %>
+    <%= form.text_area :details, 
+        class: 'form-control', 
+        placeholder: 'More details about the task above.', 
+        style: 'height: 125px;' %>
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md">
+      <label>Categories</label><br />
+      <%= text_field_tag "category", 
+          @item.categories.map { |c| c.name }.join(","), 
+          class: 'form-control', 
+          data: { role: 'tagsinput' } %>
+    </div>
+    </div>
+      <%= form.submit "Save", 
+          class: 'btn btn-primary' %>
+    </div>
 <% end %>
 

@@ -1,28 +1,77 @@
-<h1>Workaholic</h1>
-<h2>Listing All Tasks</h2>
+<%= render "header" %>
 
-<%= link_to 'New Task', new_item_path %>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Details</th>
-    <th>Deadline</th>
-    <th>Level of Importance</th>
-    <th colspan="3"></th>
-  </tr>
- 
-  <% @items.each do |item| %>
-    <tr>
-      <td><%= item.title %></td>
-      <td><%= item.details %></td>
-      <td><%= item.deadline %></td>
-      <td><%= item.level_of_importance %></td>
-      <td><%= link_to 'Show', item_path(item) %></td>
-      <td><%= link_to 'Edit', edit_item_path(item) %></td>
-      <td><%= link_to 'Delete', item_path(item),
-	      method: :delete,
-	      data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+<div class="toolbar">
+  <%= form_tag(items_path, method: :get, class: 'search-form form-group') do %>
+    <%= link_to '<i class="fa fa-plus"></i>'.html_safe, 
+        new_item_path, 
+	class: 'btn btn-primary', 
+	data: { toggle: 'tooltip', placement: 'bottom' }, 
+	title: 'New Task' %>
+    <%= link_to '<i class="fa fa-list"></i>'.html_safe, 
+        categories_path, 
+        class: 'btn btn-success', 
+	data: { toggle: 'tooltip', placement: 'bottom'}, 
+	title: 'List Categories' %>
+    <%= text_field_tag :search, 
+	params[:search], 
+	class: 'form-control', 
+	placeholder: "Search tasks" %>
+    <%= button_tag(type: 'submit', class: 'btn btn-default') do %>
+      <i class="fa fa-search"></i>
+      <%= content_tag(:strong, 'Go') %>
+    <% end %>
   <% end %>
+</div>
+
+<table class="table table-sm table-hover table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"><%= gen_link sortable("level_of_importance", "Priority") %></th>
+      <th scope="col"><%= gen_link sortable("title", "Details") %></th>
+      <th scope="col"><%= gen_link sortable("deadline", "Deadline") %></th>
+      <th scope="col"><%= gen_link sortable("done", "Modify") %></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |t| %>
+    <tr>
+      <th scope="row"><%= t.level_of_importance %></th>
+      <td class="title">
+        <h5><strong><%= t.title %></strong></h5>
+        <div class="mytags">
+          <% t.categories.each do |c| %>
+            <span class="mytag" style="background-color:<%= "#FFFFFF" %>; color: <%= "#000000" %>">
+              <%= link_to c.name, edit_category_path(c), class: 'taglink' %>
+            </span>
+          <% end %>
+        </div>
+        <%= simple_format(t.details) %>
+      </td>
+      <td><%= t.deadline if t.deadline %></td>
+      <td>
+        <span class="dropdown">
+          <button type="button" class="btn btn-secondary btn-sm" data-toggle="dropdown">
+            <i class="fa fa-ellipsis-v"></i>
+          </button>
+          <div class="dropdown-menu">
+	    <%= link_to '<i class="fa fa-edit"></i> Edit Task'.html_safe, 
+		edit_item_path(t), 
+		class: 'dropdown-item' %>
+	    <br>
+	    <%= link_to '<i class="fa fa-trash"></i> Delete Task'.html_safe, 
+		item_path(t), method: :delete, 
+		data: { confirm: 'Mark as completed?' }, 
+		class: 'dropdown-item bg-danger text-white' %>
+          </div>
+        </span>
+      </td>
+      <td>
+	 <%= link_to "View", item_path(t), class: 'btn btn-secondary' %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
+
+<%= render "footer" %>

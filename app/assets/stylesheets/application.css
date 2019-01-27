@@ -10,6 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *
+ *= require_self 
  *= require_tree .
- *= require_self
  */
+@import "font-awesome.css";
+@import "style.css";
+@import "bootstrap-sprockets.css";
+@import "bootstrap.css";
+@import "bootstrap-datepicker3.css";
+@import "bootstrap-tagsinput.css";
+@import "bootstrap-tagsinput-typeahead.css";

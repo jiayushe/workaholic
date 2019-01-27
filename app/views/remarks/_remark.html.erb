@@ -9,7 +9,9 @@
 </p>
 
 <p>
-  <%= link_to 'Delete Remark', [remark.item, remark],
-               method: :delete,
-               data: { confirm: 'Are you sure to delete this comment?' } %>
+  <%= link_to 'Delete Remark', 
+      [remark.item, remark],
+      class: 'btn btn-default',
+      method: :delete,
+      data: { confirm: 'Delete this remark?' } %>
 </p>

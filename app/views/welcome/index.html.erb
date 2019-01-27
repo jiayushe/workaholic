@@ -1,6 +1,10 @@
-<h1>Welcome to Workaholic, your personalised todo list manager!</h1>
+<%= render "header" %>
+<h4><strong>Welcome to Workaholic, your personalised todo list manager!</strong></h4>
 <p>This is a web application designed for you to manage your daily tasks.</p>
-<p>You are also able to view your past achievements here!</p>
-<p>Come and explore!</p>
+<p>Click below and start exploring!</p>
 
-<%= link_to 'My Workaholic', controller: 'items' %>
+<div>
+<%= link_to 'My Workaholic'.html_safe, items_path, class: 'btn btn-primary' %>
+</div>
+
+<%= render "footer" %>

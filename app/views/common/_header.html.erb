@@ -1,0 +1,48 @@
+<div class="container">
+    
+  <h1>
+    <% if link.empty? %>
+      <%= title %> | Workaholic
+    <% else %>
+      <%= link_to title, link %> | Workaholic
+    <% end %>	  
+  
+    <% if logged_in? %>
+      <span class="dropdown user">
+        <button class="btn btn-default dropdown-toggle" type="button" id="userMenuButton" data-toggle="dropdown">
+          <% if current_user.name.blank? %>
+            <%= current_user.email %>
+          <% else %>
+            <%= current_user.name %>
+          <% end %>
+        </button>
+        <div class="dropdown-menu">
+	  <%= link_to '<i class="fa fa-edit"></i> Profile'.html_safe, 
+              current_user, 
+	      class: "dropdown-item" %>
+	  <br> 
+	  <%= link_to '<i class="fa fa-trash"></i> Logout'.html_safe, 
+	      logout_path, method: :delete, 
+	      class: "dropdown-item",
+              data: {confirm: 'Do you want to log out?'}%>
+        </div>
+      </span>
+    <% end %>
+  </h1>
+
+  <%= display_flash %>
+
+  <div id="alerts" class="alerts">
+  </div>
+    
+  <% flash.each do |key, value| %>
+	    
+  <div class="alert alert-<%= key %> alert-dismissible fade show" role="alert">
+    <%= value %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+<% end %>
+<hr>

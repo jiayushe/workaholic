@@ -1,0 +1,31 @@
+<%= render "header" %>
+<h3><strong>Category</strong></h3>
+
+<hr>
+
+<p>
+  <h4><strong>Name:</strong></h4>
+  <%= @category.name %>
+</p>
+
+<hr>
+
+<p>
+  <h4><strong>Tasks:</strong></h4>
+  <%= @category.items.each do |t| %>
+    <p><strong>Title: </strong> <%= t.title %></p>
+    <p><strong>Priority: </strong> <%= t.level_of_importance %></p>
+    <p><strong>Deadline: </strong> <%= t.deadline %></p>
+    <p><strong>Details: </strong> <br> <%= t.details %></p>
+    <div>Created at <%= t.created_at %> by <%= current_user.name%> (user <%= t.user_id %>).</div>
+    <div>Updated at <%= t.updated_at %> by <%= current_user.name%> (user <%= t.user_id %>).</div>
+    <br>
+  <% end %>
+</p>
+
+<div>
+<%= link_to 'Edit'.html_safe, edit_category_path(@category), class: 'btn btn-default' %>
+<%= link_to 'Back'.html_safe, categories_path, class: 'btn btn-default' %>
+</div>
+
+<%= render "footer" %>

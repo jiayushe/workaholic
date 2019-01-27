@@ -1,12 +1,11 @@
-<h1>Workaholic</h1>
+<%= render "header" %>
+<h3><strong>Task</strong></h3>
+
+<hr>
+
 <p>
   <strong>Title:</strong>
   <%= @item.title %>
-</p>
- 
-<p>
-  <strong>Details:</strong>
-  <%= @item.details %>
 </p>
 
 <p>
@@ -15,15 +14,36 @@
 </p>
 
 <p>
-  <strong>Level of Importance:</strong>
+  <strong>Priority:</strong>
   <%= @item.level_of_importance %>
 </p>
 
-<h3>Remarks</h3>
+<p>
+  <strong>Details:</strong><br>
+  <%= @item.details %>
+</p>
+
+<div>Created at <%= @item.created_at %> by <%= current_user.name%> (user <%= @item.user_id %>).</div>
+<div>Updated at <%= @item.updated_at %> by <%= current_user.name%> (user <%= @item.user_id %>).</div>
+
+<div>
+<%= link_to 'Edit'.html_safe, edit_item_path(@item), class: 'btn btn-default' %>
+<%= link_to 'Back'.html_safe, items_path, class: 'btn btn-default' %>
+</div>
+
+<hr>
+
+<div>
+<h4><strong>Remarks</strong></h4>
 <%= render @item.remarks %>
+</div>
 
-<h3>Add a remark:</h3>
+<hr>
+
+<div>
+<h4><strong>Add remarks</strong></h4>
 <%= render 'remarks/form' %>
+</div>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= render "footer" %>
+

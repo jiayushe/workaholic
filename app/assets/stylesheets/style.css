@@ -1,0 +1,84 @@
+.table td, .table th {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table > thead > tr > th > a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.fa { display:inline; }
+
+.alerts {
+  color: "#FFFFFF";
+  position: fixed;
+  top: 0;
+  width: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 9999;
+}
+
+.inner {
+  margin: 5px;
+}
+
+.name {
+  text-align: left;
+}
+
+.toolbar {
+  margin-bottom: 0.5rem;
+}
+
+.mytags {
+  white-space: nowrap;
+  font-size: 0.8em;
+  margin: 0.5em 0;
+}
+
+.mytags>.mytag:first-child:last-child {
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+  margin-left: 0
+}
+
+.mytags>.mytag:first-child {
+  border-radius: 0.5em 0 0 0.5em;
+  margin-left: 0
+}
+
+.mytags>.mytag:last-child {
+  border-radius: 0 0.5em 0.5em 0
+}
+
+.mytag {
+  border: 1px solid #aaa;
+  margin-left: -1px;
+  padding: 0.1em 0.5em;
+}
+
+.taglink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.search-form *:not(:last-child) {
+  margin-right: 5px;
+}
+
+form.search-form {
+  display: flex;
+  width: 100%;
+}
+
+.search-form input {
+  display: inline;
+  flex-grow: 100;
+  vertical-align: middle;
+}
+
+.user {
+  float: right;
+}

@@ -1,4 +1,5 @@
 class RemarksController < ApplicationController
+# http_basic_authenticate_with name:"user", password:"passwd", only: :destroy
   #def new
   #  @item = Item.find(params[:item_id])
   #end
