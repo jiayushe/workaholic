@@ -12,6 +12,10 @@ She Jiayu
 
 A0188314B
 
+## Deployment
+
+Workaholic is deployed at https://workaholics.herokuapp.com/.
+
 ## Development Setup
 
 ### Versions
@@ -31,7 +35,7 @@ $ bundle install
 ```
 3. Create database and run migration:
 ```
-$ rake db:create db:migrate db:seed
+$ rake db:create db:migrate
 ```
 4. Start the local server:
 ```
