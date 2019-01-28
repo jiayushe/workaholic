@@ -1,7 +1,7 @@
 <%= render "common/header", title: "My Workaholic", link: items_path %>
 <div class="toolbar">
-  <%= link_to '<i class="fa fa-chevron-left" aria-hidden="true"></i>'.html_safe, 
-      'javascript:history.back()', 
+  <%= link_to '<i class="fa fa-chevron-left" aria-hidden="true"></i> Back'.html_safe, 
+      defined?(show) ? categories_path : 'javascript:history.back()', 
       class: 'btn btn-xs', 
       title: 'Back', 
       data: { toggle: 'tooltip', placement: 'bottom' } %>

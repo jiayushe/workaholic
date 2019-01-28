@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user&.authenticate(params[:session][:password])
       log_in(user)
-      flash[:primary] = "Welcome back to Workaholic!"
+      flash[:success] = "Welcome back to Workaholic!"
       redirect_to items_path
     else
       flash.now[:danger] = "Invalid username and/or password."

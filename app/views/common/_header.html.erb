@@ -2,9 +2,9 @@
     
   <h1>
     <% if link.empty? %>
-      <%= title %> | Workaholic
+      <%= title %> | by JS
     <% else %>
-      <%= link_to title, link %> | Workaholic
+      <%= link_to title, link %> | by JS
     <% end %>	  
   
     <% if logged_in? %>
@@ -30,19 +30,15 @@
     <% end %>
   </h1>
 
-  <%= display_flash %>
+  <hr>
 
-  <div id="alerts" class="alerts">
-  </div>
-    
   <% flash.each do |key, value| %>
 	    
-  <div class="alert alert-<%= key %> alert-dismissible fade show" role="alert">
+  <div class="alert alert-<%= key %> alert-dismissible show" role="alert">
     <%= value %>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
 
-<% end %>
-<hr>
+  <% end %>

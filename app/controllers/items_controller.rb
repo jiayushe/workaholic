@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
       @item.assign_categories(params[:category], current_user)    
       redirect_to @item
     else
-      flash.now[:danger] = @item.errors.full_messages.join(",")
+      flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r --- " + @item.errors.full_messages.join("\n\r --- ")
       render 'new', status: :bad_request
     end
     #render plain: params[:item].inspect
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to @item
     else
-      flash.now[:danger] = @item.errors.full_messages.join(",")
+      flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r --- " + @item.errors.full_messages.join("\r\n --- ")
       render 'edit', status: :bad_request
     end
   end

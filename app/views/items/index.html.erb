@@ -2,12 +2,12 @@
 
 <div class="toolbar">
   <%= form_tag(items_path, method: :get, class: 'search-form form-group') do %>
-    <%= link_to '<i class="fa fa-plus"></i>'.html_safe, 
+    <%= link_to '<i class="fa fa-plus"></i> New'.html_safe, 
         new_item_path, 
 	class: 'btn btn-primary', 
 	data: { toggle: 'tooltip', placement: 'bottom' }, 
 	title: 'New Task' %>
-    <%= link_to '<i class="fa fa-list"></i>'.html_safe, 
+    <%= link_to '<i class="fa fa-list"></i> Categories'.html_safe, 
         categories_path, 
         class: 'btn btn-success', 
 	data: { toggle: 'tooltip', placement: 'bottom'}, 
@@ -53,15 +53,16 @@
         <span class="dropdown">
           <button type="button" class="btn btn-secondary btn-sm" data-toggle="dropdown">
             <i class="fa fa-ellipsis-v"></i>
+            <%= content_tag(:strong, 'More') %>
           </button>
           <div class="dropdown-menu">
 	    <%= link_to '<i class="fa fa-edit"></i> Edit Task'.html_safe, 
 		edit_item_path(t), 
 		class: 'dropdown-item' %>
 	    <br>
-	    <%= link_to '<i class="fa fa-trash"></i> Delete Task'.html_safe, 
+	    <%= link_to '<i class="fa fa-trash"></i> Task Completed'.html_safe, 
 		item_path(t), method: :delete, 
-		data: { confirm: 'Mark as completed?' }, 
+		data: { confirm: 'Mark as completed and delete task?' }, 
 		class: 'dropdown-item bg-danger text-white' %>
           </div>
         </span>

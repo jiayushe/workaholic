@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
       @category.assign_items(params[:item], current_user)
       redirect_to @category
     else
-      flash.now[:danger] = @category.errors.full_messages.join(", ")
+      flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r --- " + @category.errors.full_messages.join("\r\n --- ")
       render 'new', status: :bad_request
     end
   end
@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to @category
     else
-      flash.now[:danger] = @category.errors.full_messages.join(", ")
+      flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r --- " + @category.errors.full_messages.join("\r\n --- ")
       render 'edit', status: :bad_request
     end
   end

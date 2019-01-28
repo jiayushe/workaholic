@@ -5,7 +5,11 @@ class Item < ApplicationRecord
   belongs_to :user
   validates :title, presence: true, uniqueness: true
 # validates :deadline, presence: true
-  validates :level_of_importance, numericality: { only_integer: true, greater_than: 0, less_than: 11, message: "must be between 1 and 10 inclusive." }
+  validates :level_of_importance, 
+	     numericality: { only_integer: true, 
+		             greater_than: 0, 
+			     less_than: 6, 
+			     message: "(priority) must be between 1 and 5 inclusive" }
 
   def self.search(keyword)
     self.where("title LIKE ?", "%#{keyword}%")

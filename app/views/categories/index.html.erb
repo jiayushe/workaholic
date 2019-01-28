@@ -2,12 +2,12 @@
 
 <div class="toolbar">
   <%= form_tag(categories_path, method: :get, class: 'search-form form-group') do %>
-    <%= link_to '<i class="fa fa-plus"></i>'.html_safe,
+    <%= link_to '<i class="fa fa-plus"></i> New'.html_safe,
         new_category_path, 
 	class: 'btn btn-primary', 
 	data: { toggle: 'tooltip', placement: 'bottom' },
 	title: 'New Category' %>
-    <%= link_to '<i class="fa fa-list"></i>'.html_safe, 
+    <%= link_to '<i class="fa fa-list"></i> Tasks'.html_safe, 
 	items_path,
 	class: 'btn btn-success', 
 	data: { toggle: 'tooltip', placement: 'bottom'}, 
@@ -46,7 +46,8 @@
       <td>
         <span class="dropdown">
           <button type="button" class="btn btn-secondary btn-sm" data-toggle="dropdown">
-            <i class="fa fa-ellipsis-v"></i>
+	    <i class="fa fa-ellipsis-v"></i>
+            <%= content_tag(:strong, 'More') %>
           </button>
           <div class="dropdown-menu">
 	    <%= link_to '<i class="fa fa-edit"></i> Edit Category'.html_safe, 

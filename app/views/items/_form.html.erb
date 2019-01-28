@@ -1,20 +1,4 @@
 <%= form_for @item, html: { id:"needs-validation", novalidate: "novalidate" }  do |form| %>
-  <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h4>
-        <strong>
-        <%= pluralize(@item.errors.count, "error") %> prohibited
-	this task from being saved:
-	</strong>
-      </h4>
-      <ul>
-        <% @item.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="form-row">
     <div class="col-md">
       <div class="form-group">
@@ -43,11 +27,11 @@
           <%= form.label :priority %>
           <%= form.number_field :level_of_importance, 
               class: 'form-control', 
-              placeholder: 'Choose between 1 to 10.', 
+              placeholder: 'Choose from 1 to 5.', 
               required: true, 
               min: 1, max: 10 %>
           <div class="invalid-feedback">
-            Please provide a valid priority, ranging from 1 to 10.
+            Please provide a valid priority (between 1 and 5).
           </div>
         </div>
       </div>
