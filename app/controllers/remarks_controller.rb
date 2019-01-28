@@ -1,5 +1,4 @@
 class RemarksController < ApplicationController
-# http_basic_authenticate_with name:"user", password:"passwd", only: :destroy
   #def new
   #  @item = Item.find(params[:item_id])
   #end
@@ -10,8 +9,8 @@ class RemarksController < ApplicationController
     if @remark.save
       redirect_to item_path(@item)
     else
+      flash[:danger] = "The following error(s) prohibited this remark from being saved:\n\r ♣ "+ @remark.errors.full_messages.join("\r\n ♣ ")
       redirect_to item_path(@item)
-      #render 'new'
     end
   end
   

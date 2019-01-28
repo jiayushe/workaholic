@@ -9,7 +9,6 @@ class CategoriesController < ApplicationController
 
   def show
     @category = current_user.categories.find(params[:id])  
-#   render json: current_user.categories.names.to_a if params[:id] == "all"
   end
 
   def new
@@ -26,7 +25,7 @@ class CategoriesController < ApplicationController
       @category.assign_items(params[:item], current_user)
       redirect_to @category
     else
-      flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r --- " + @category.errors.full_messages.join("\r\n --- ")
+      flash.now[:danger] = "The following error(s) prohibited this category from being saved:\n\r ♣ " + @category.errors.full_messages.join("\r\n ♣ ")
       render 'new', status: :bad_request
     end
   end
@@ -37,7 +36,7 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to @category
     else
-      flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r --- " + @category.errors.full_messages.join("\r\n --- ")
+      flash.now[:danger] = "The following error(s) prohibited this category from being saved:\n\r ♣ " + @category.errors.full_messages.join("\r\n ♣ ")
       render 'edit', status: :bad_request
     end
   end

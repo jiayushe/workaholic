@@ -1,6 +1,4 @@
 class ItemsController < ApplicationController
-# http_basic_authenticate_with name:"user", password:"passwd", except:[:index, :show]
-
   def index
     if params[:search]
       @items = current_user.items.search(params[:search])
@@ -29,7 +27,7 @@ class ItemsController < ApplicationController
       @item.assign_categories(params[:category], current_user)    
       redirect_to @item
     else
-      flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r --- " + @item.errors.full_messages.join("\n\r --- ")
+      flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r ♣ " + @item.errors.full_messages.join("\n\r ♣ ")
       render 'new', status: :bad_request
     end
     #render plain: params[:item].inspect
@@ -41,7 +39,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to @item
     else
-      flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r --- " + @item.errors.full_messages.join("\r\n --- ")
+      flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r ♣ " + @item.errors.full_messages.join("\r\n ♣ ")
       render 'edit', status: :bad_request
     end
   end

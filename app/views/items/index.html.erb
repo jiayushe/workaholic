@@ -29,7 +29,7 @@
       <th scope="col"><%= gen_link sortable("level_of_importance", "Priority") %></th>
       <th scope="col"><%= gen_link sortable("title", "Details") %></th>
       <th scope="col"><%= gen_link sortable("deadline", "Deadline") %></th>
-      <th scope="col"><%= gen_link sortable("done", "Modify") %></th>
+      <th scope="col"><%= gen_link sortable("title", "Modify") %></th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -42,7 +42,7 @@
         <div class="mytags">
           <% t.categories.each do |c| %>
             <span class="mytag" style="background-color:<%= "#FFFFFF" %>; color: <%= "#000000" %>">
-              <%= link_to c.name, edit_category_path(c), class: 'taglink' %>
+              <%= link_to c.name, category_path(c), class: 'taglink' %>
             </span>
           <% end %>
         </div>

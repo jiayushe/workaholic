@@ -1,0 +1,43 @@
+<%= render "header", show: true %>
+<h3><strong>Admin Management</strong></h3>
+<hr>
+
+<table class="table table-sm table-hover table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">User ID</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col">Tasks</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |u| %>
+    <tr>
+      <th scope="row"><%= u.id %></th>
+      <td class="title">
+        <h5><strong><%= u.name %></strong></h5>
+      </td>
+      <td><%= u.email %></td>
+      <td>*<%= u.password %></td>
+      <td class="task name">
+        <ol>
+        <% u.items.all.each do |t| %>
+          <li><%= link_to t.title, item_path(id: t.id) %></li>
+        <% end %>
+        </ol>
+      </td>
+      <td>
+	 <%= link_to '<i class="fa fa-trash"></i> Delete User'.html_safe, 
+             user_path(u), method: :delete,
+             data: { confirm: 'Delete user ' + u.name + ' and the associated tasks and categories from database?' },
+             class: 'btn btn-default' %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render "footer" %>
