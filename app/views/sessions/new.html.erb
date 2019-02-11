@@ -1,11 +1,9 @@
 <%= render "header" %>
 
-<h4>Do not have an account yet?</h4>
-<%= link_to "Sign up and start exploring Workaholic", new_user_path, class: "btn btn-primary" %>
+<h3><strong>Log in</strong></h3>
 
-<hr/>
+<hr>
 
-<h4>Already have an account?</h4>
 <%= form_for(:session, url: login_path) do |u| %>
   <div class="form-group">
     <%= u.label :email %>
@@ -17,5 +15,10 @@
   </div>
   <%= u.submit "Log in", class:"btn btn-primary" %>
 <% end %>
+
+<hr>
+
+<h5><strong>Do not have a Workaholic account yet?</strong></h5>
+<%= link_to "Sign up and start exploring Workaholic", new_user_path, class: "btn btn-default" %>
 
 <%= render "footer" %>

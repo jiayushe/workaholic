@@ -26,19 +26,22 @@
 <table class="table table-sm table-hover table-bordered table-striped">
   <thead class="thead-dark">
     <tr>
-      <th scope="col"><%= gen_link sortable("level_of_importance", "Priority") %></th>
+      <th scope="col"><%= gen_link sortable("title", "Task Title") %></th>
+      <th scope="col"><%= gen_link sortable("title", "Categories") %></th>   
       <th scope="col"><%= gen_link sortable("title", "Details") %></th>
+      <th scope="col"><%= gen_link sortable("level_of_importance", "Priority") %></th>
       <th scope="col"><%= gen_link sortable("deadline", "Deadline") %></th>
-      <th scope="col"><%= gen_link sortable("title", "Modify") %></th>
+      <th scope="col">Modify</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <% @items.each do |t| %>
     <tr>
-      <th scope="row"><%= t.level_of_importance %></th>
       <td class="title">
         <h5><strong><%= t.title %></strong></h5>
+      </td>
+      <td class="category">
         <div class="mytags">
           <% t.categories.each do |c| %>
             <span class="mytag" style="background-color:<%= "#FFFFFF" %>; color: <%= "#000000" %>">
@@ -46,8 +49,11 @@
             </span>
           <% end %>
         </div>
+      </td>
+      <td class="details">
         <%= simple_format(t.details) %>
       </td>
+      <th scope="row"><%= t.level_of_importance %></th>
       <td><%= t.deadline if t.deadline %></td>
       <td>
         <span class="dropdown">
