@@ -1,5 +1,5 @@
 <%= form_for @category, html: { id: "needs-validation", novalidate: "novalidate" } do |c| %>
-  <div class="form-row">
+
     <div class="form-group">
       <%= c.label :name %>
       <%= c.text_field :name, 
@@ -18,7 +18,7 @@
           data: { role: 'tagsinput' } %>
     </div>
     <%= c.submit "Save", class: 'btn btn-primary' %>
-  </div>
+
 <% end %>
 
 <script>

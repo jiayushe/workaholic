@@ -1,3 +1,30 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *
+ *= require_self 
+ *= require_tree .
+ */
+@import 'bootstrap';
+@import 'bootstrap-datepicker3';
+@import 'bootstrap-tagsinput';
+@import 'bootstrap-tagsinput-typeahead';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+#header {
+  background-color: rgba(0, 120, 240, 0.220);
+}
+
 .table td, .table th {
   vertical-align: middle;
   text-align: center;
@@ -27,6 +54,10 @@
 
 .name {
   text-align: left;
+}
+
+.user {
+  float: right;
 }
 
 .toolbar {
@@ -77,8 +108,4 @@ form.search-form {
   display: inline;
   flex-grow: 100;
   vertical-align: middle;
-}
-
-.user {
-  float: right;
 }

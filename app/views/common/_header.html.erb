@@ -4,9 +4,9 @@
   <h1>
     <%= image_tag("to-do-icon-sm.png") %>
     <% if link.empty? %>
-      <%= title %> | by JS
+      <%= title %>
     <% else %>
-      <%= link_to title, link %> | by JS
+      <%= link_to title, link %>
     <% end %>	  
   
     <% if logged_in? %>
