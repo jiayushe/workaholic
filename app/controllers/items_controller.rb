@@ -9,7 +9,6 @@ class ItemsController < ApplicationController
   end
   
   def show
-#   render json: current_user.items.names.to_a if params[:id] == "all"
     @item = current_user.items.find(params[:id])
   end
 

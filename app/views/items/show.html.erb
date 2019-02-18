@@ -3,46 +3,81 @@
 
 <hr>
 
-<p>
-  <strong>Title:</strong>
-  <%= @item.title %>
-</p>
-
-<p>
-  <strong>Deadline:</strong>
-  <%= @item.deadline %>
-</p>
-
-<p>
-  <strong>Priority:</strong>
-  <%= @item.level_of_importance %>
-</p>
-
-<p>
-  <strong>Details:</strong><br>
-  <%= @item.details %>
-</p>
-
-<div>Created at <%= @item.created_at %> by <%= current_user.name%> (user <%= @item.user_id %>).</div>
-<div>Updated at <%= @item.updated_at %> by <%= current_user.name%> (user <%= @item.user_id %>).</div>
+<div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+  <%= label_tag :title %>
+  <%= text_field_tag :title, 
+	  @item.title,
+      class: 'form-control', 
+      disabled: "disabled" %>
+</div>
+<div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-calendar-check-o fa-fw"></i></span>
+  <%= label_tag :deadline %>
+  <%= text_field_tag :deadline, 
+	  @item.deadline,
+      class: 'form-control', 
+      placeholder: 'dd/mm/yyyy', 
+      disabled: "disabled" %>
+</div>
+<div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-flash fa-fw"></i></span>
+  <%= label_tag :priority %>
+  <%= number_field_tag :level_of_importance, 
+	  @item.level_of_importance,
+      class: 'form-control', 
+      disabled: "disabled" %>
+</div> 
+<div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-pencil-square fa-fw"></i></span>
+  <%= label_tag :details %>
+  <%= text_area_tag :details, 
+      @item.details,
+	  class: 'form-control', 
+      placeholder: 'More details about the task above.', 
+      disabled: "disabled",
+	  style: 'height: 125px;' %>
+</div>
+<div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-tags fa-fw"></i></span>
+  <%= label_tag :categories %>
+  <%= text_field_tag "category", 
+      @item.categories.map { |c| c.name }.join(","), 
+      class: 'form-control', 
+      data: { role: 'tagsinput' },
+      disabled: "disabled" %>
+</div>
+<div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
+  <%= label_tag :updated_at %>
+  <%= text_field_tag :updated_at, 
+	  @item.updated_at,
+      class: 'form-control', 
+      disabled: "disabled" %>
+</div>
+<div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
+  <%= label_tag :created_at %>
+  <%= text_field_tag :created_at, 
+	  @item.created_at,
+      class: 'form-control', 
+      disabled: "disabled" %>
+</div>
 
 <div>
-<%= link_to 'Edit'.html_safe, edit_item_path(@item), class: 'btn btn-default' %>
-<%= link_to 'Back'.html_safe, items_path, class: 'btn btn-default' %>
+  <%= link_to 'Edit'.html_safe, edit_item_path(@item), class: 'btn btn-primary' %>
 </div>
+
+<% if @item.remarks %>
+  <%= render "remark" %>
+<% else %>
+<% end %>
 
 <hr>
 
 <div>
-<h4><strong>Remarks</strong></h4>
-<%= render @item.remarks %>
-</div>
-
-<hr>
-
-<div>
-<h4><strong>Add remarks</strong></h4>
-<%= render 'remarks/form' %>
+  <h4><strong>Add remarks</strong></h4>
+  <%= render 'remarks/form' %>
 </div>
 
 <%= render "footer" %>

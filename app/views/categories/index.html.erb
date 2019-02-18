@@ -2,68 +2,61 @@
 
 <div class="toolbar">
   <%= form_tag(categories_path, method: :get, class: 'search-form form-group') do %>
-    <%= link_to '<i class="fa fa-plus"></i> New'.html_safe,
+    <%= link_to '<i class="fa fa-plus"></i>'.html_safe,
         new_category_path, 
-	class: 'btn btn-primary', 
-	data: { toggle: 'tooltip', placement: 'bottom' },
-	title: 'New Category' %>
-    <%= link_to '<i class="fa fa-list"></i> Tasks'.html_safe, 
-	items_path,
-	class: 'btn btn-success', 
-	data: { toggle: 'tooltip', placement: 'bottom'}, 
-	title: 'List Tasks' %>
+        class: 'btn btn-primary', 
+        data: { toggle: 'tooltip', placement: 'bottom' },
+        title: 'New Category' %>
+    <%= link_to '<i class="fa fa-bookmark"></i> Tasks'.html_safe, 
+        items_path,
+        class: 'btn btn-success', 
+        data: { toggle: 'tooltip', placement: 'bottom'}, 
+        title: 'Display Tasks' %>
     <%= text_field_tag :search, 
-	params[:search], 
-	class: 'form-control', 
-	placeholder: "Search categories" %>
+        params[:search], 
+        class: 'form-control', 
+        placeholder: "Search categories" %>
     <%= button_tag(type: 'submit', class: 'btn btn-default') do %>
-      <i class="fa fa-search"></i>
-      <%= content_tag(:strong, 'Go') %>
+        <i class="fa fa-search"></i>
+        <%= content_tag(:strong, '') %>
     <% end %>
   <% end %>
 </div>
 
 <table class="table table-sm table-hover table-bordered table-striped">	
-<thead class="thead-dark">
+<thead class="thead-light">
     <tr>
       <th scope="col">Category Name</th>
       <th scope="col">Tasks</th>
       <th scope="col">Modify</th>
-      <th scope="col"></th>
     </tr>
 </thead>
 <tbody>
     <% @categories.each do |c| %>
     <tr>
-      <th scope="row" style="background-color:<%= "#FFFFFF" %>; color: <%= "#000000" %>"><%= c.name %></th>
+      <th scope="row" style="background-color:<%= "#FFFFFF" %>; color: <%= "#000000" %>">
+        <%= link_to c.name, category_path(c) %>
+      </th>
       <td class="name">
-        <ol>
+        <ol class="fa-ul">
+        <i class="fa-li fa fa-bookmark"></i>
         <% c.items.all.each do |t| %>
-          <li><%= link_to t.title, item_path(id: t.id) %></li>
+          <li>
+          <i class="fa-li fa fa-bookmark"></i>
+          <%= link_to t.title, item_path(id: t.id) %>
+          </li>
         <% end %>
         </ol>
       </td>
       <td>
-        <span class="dropdown">
-          <button type="button" class="btn btn-secondary btn-sm" data-toggle="dropdown">
-	    <i class="fa fa-ellipsis-v"></i>
-            <%= content_tag(:strong, 'More') %>
-          </button>
-          <div class="dropdown-menu">
-	    <%= link_to '<i class="fa fa-edit"></i> Edit Category'.html_safe, 
-		    edit_category_path(c), 
-		    class: 'dropdown-item' %>
-	    <br> 
-	    <%= link_to '<i class="fa fa-trash"></i> Delete Category'.html_safe, 
-		    category_path(c), 
-		    method: :delete, 
-		    data: { confirm: 'Delete category?' }, 
-		    class: 'dropdown-item bg-danger text-white' %>
-          </div>
-        </span>
-      </td>
-      <td>
-        <%= link_to "View", category_path(c), class: 'btn btn-secondary' %>
+        <%= link_to '<i class="fa fa-edit"></i>'.html_safe, 
+            edit_category_path(c),
+            class: 'btn btn-primary'%>
+        <%= link_to '<i class="fa fa-trash"></i>'.html_safe, 
+            category_path(c), 
+            method: :delete, 
+            data: { confirm: 'Delete category?' }, 
+            class: 'btn btn-danger text-white' %>
       </td>
     </tr>
     <% end %>

@@ -2,79 +2,63 @@
 
 <div class="toolbar">
   <%= form_tag(items_path, method: :get, class: 'search-form form-group') do %>
-    <%= link_to '<i class="fa fa-plus"></i> New'.html_safe, 
+    <%= link_to '<i class="fa fa-plus"></i>'.html_safe, 
         new_item_path, 
-	class: 'btn btn-primary', 
-	data: { toggle: 'tooltip', placement: 'bottom' }, 
-	title: 'New Task' %>
-    <%= link_to '<i class="fa fa-list"></i> Categories'.html_safe, 
+	    class: 'btn btn-primary', 
+	    data: { toggle: 'tooltip', placement: 'bottom' }, 
+	    title: 'New Task' %>
+    <%= link_to '<i class="fa fa-tags"></i> Categories'.html_safe, 
         categories_path, 
         class: 'btn btn-success', 
-	data: { toggle: 'tooltip', placement: 'bottom'}, 
-	title: 'List Categories' %>
+	    data: { toggle: 'tooltip', placement: 'bottom'}, 
+	    title: 'Display Categories' %>
     <%= text_field_tag :search, 
-	params[:search], 
-	class: 'form-control', 
-	placeholder: "Search tasks" %>
+	    params[:search], 
+	    class: 'form-control', 
+	    placeholder: "Search tasks" %>
     <%= button_tag(type: 'submit', class: 'btn btn-default') do %>
-      <i class="fa fa-search"></i>
-      <%= content_tag(:strong, 'Go') %>
+        <i class="fa fa-search"></i>
+        <%= content_tag(:strong, '') %>
     <% end %>
   <% end %>
 </div>
 
 <table class="table table-sm table-hover table-bordered table-striped">
-  <thead class="thead-dark">
+  <thead class="thead-light">
     <tr>
       <th scope="col"><%= gen_link sortable("title", "Task Title") %></th>
       <th scope="col"><%= gen_link sortable("title", "Categories") %></th>   
-      <th scope="col"><%= gen_link sortable("title", "Details") %></th>
       <th scope="col"><%= gen_link sortable("level_of_importance", "Priority") %></th>
-      <th scope="col"><%= gen_link sortable("deadline", "Deadline") %></th>
+      <th scope="col"><%= gen_link sortable("deadline", "Due") %></th>
       <th scope="col">Modify</th>
-      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <% @items.each do |t| %>
     <tr>
-      <td class="title">
-        <h5><strong><%= t.title %></strong></h5>
-      </td>
+      <th class="title">
+        <%= link_to t.title, item_path(t) %>
+      </th>
       <td class="category">
         <div class="mytags">
           <% t.categories.each do |c| %>
             <span class="mytag" style="background-color:<%= "#FFFFFF" %>; color: <%= "#000000" %>">
+              <i class="fa fa-tags"></i>
               <%= link_to c.name, category_path(c), class: 'taglink' %>
             </span>
           <% end %>
         </div>
       </td>
-      <td class="details">
-        <%= simple_format(t.details) %>
-      </td>
       <th scope="row"><%= t.level_of_importance %></th>
       <td><%= t.deadline if t.deadline %></td>
       <td>
-        <span class="dropdown">
-          <button type="button" class="btn btn-secondary btn-sm" data-toggle="dropdown">
-            <i class="fa fa-ellipsis-v"></i>
-            <%= content_tag(:strong, 'More') %>
-          </button>
-          <div class="dropdown-menu">
-	    <%= link_to '<i class="fa fa-edit"></i> Edit Task'.html_safe, 
-		edit_item_path(t), 
-		class: 'dropdown-item' %>
-	    <br>
-	    <%= link_to '<i class="fa fa-trash"></i> Task Completed'.html_safe, 
-		item_path(t), method: :delete, 
-		data: { confirm: 'Mark as completed and delete task?' }, 
-		class: 'dropdown-item bg-danger text-white' %>
-          </div>
-        </span>
-      </td>
-      <td>
-	 <%= link_to "View", item_path(t), class: 'btn btn-secondary' %>
+        <%= link_to '<i class="fa fa-edit"></i>'.html_safe, 
+            edit_item_path(t), 
+            class: 'btn btn-primary' %>
+        <%= link_to '<i class="fa fa-trash"></i>'.html_safe, 
+            item_path(t), method: :delete, 
+            data: { confirm: 'Mark as completed and delete task?' }, 
+            class: 'btn btn-danger text-white' %>
       </td>
     </tr>
     <% end %>

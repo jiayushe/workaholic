@@ -3,29 +3,39 @@
 
 <hr>
 
-<p>
-  <h4><strong>Name:</strong></h4>
-  <%= @category.name %>
-</p>
+<div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+  <%= label_tag :name %>
+  <%= text_field_tag :name, 
+      @category.name,
+	  class: 'form-control', 
+      disabled: "disabled" %>
+</div>
+<div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-bookmark fa-fw"></i></span>
+  <%= label_tag :tasks %>
+  <%= text_field_tag "item", 
+      @category.items.map { |t| t.title }.join(","), 
+      class: 'form-control', 
+      data: { role: 'tagsinput' },
+	  disabled: "disabled" %>
+</div>
 
 <hr>
 
-<p>
-  <h4><strong>Tasks:</strong></h4>
-  <%= @category.items.each do |t| %>
+<h5><strong><i class="fa fa-bookmark fa-fw"></i> Tasks:</strong></h5>
+  <% @category.items.each do |t| %>
     <p><strong>Title: </strong> <%= t.title %></p>
     <p><strong>Priority: </strong> <%= t.level_of_importance %></p>
     <p><strong>Deadline: </strong> <%= t.deadline %></p>
-    <p><strong>Details: </strong> <br> <%= t.details %></p>
-    <div>Created at <%= t.created_at %> by <%= current_user.name%> (user <%= t.user_id %>).</div>
-    <div>Updated at <%= t.updated_at %> by <%= current_user.name%> (user <%= t.user_id %>).</div>
+    <p><strong>Details: </strong> <%= t.details %></p>
+    <p><strong>Updated at </strong><%= t.updated_at %> by <%= current_user.name%>.</p>
+    <p><strong>Created at </strong><%= t.created_at %> by <%= current_user.name%>.</p> 
     <br>
   <% end %>
-</p>
 
 <div>
-<%= link_to 'Edit'.html_safe, edit_category_path(@category), class: 'btn btn-default' %>
-<%= link_to 'Back'.html_safe, categories_path, class: 'btn btn-default' %>
+<%= link_to 'Edit'.html_safe, edit_category_path(@category), class: 'btn btn-primary' %>
 </div>
 
 <%= render "footer" %>

@@ -3,13 +3,13 @@
 <hr>
 
 <table class="table table-sm table-hover table-bordered table-striped">
-  <thead class="thead-dark">
+  <thead class="thead-light">
     <tr>
-      <th scope="col">User ID</th>
-      <th scope="col">User Name</th>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Password</th>
       <th scope="col">Tasks</th>
+      <th scope="col">Categories</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -17,11 +17,10 @@
     <% @users.each do |u| %>
     <tr>
       <th scope="row"><%= u.id %></th>
-      <td class="title">
-        <h5><strong><%= u.name %></strong></h5>
+      <td class="name">
+        <%= u.name %> (<%= u.created_at.iso8601 %>)
       </td>
       <td><%= u.email %></td>
-      <td>*<%= u.password %></td>
       <td class="task name">
         <ol>
         <% u.items.all.each do |t| %>
@@ -29,8 +28,15 @@
         <% end %>
         </ol>
       </td>
+      <td class="category name">
+        <ol>
+        <% u.categories.all.each do |c| %>
+          <li><%= link_to c.name, category_path(id: c.id) %></li>
+        <% end %>
+        </ol>
+      </td>
       <td>
-	 <%= link_to '<i class="fa fa-trash"></i> Delete User'.html_safe, 
+	  <%= link_to '<i class="fa fa-trash"></i> Delete User'.html_safe, 
              user_path(u), method: :delete,
              data: { confirm: 'Delete user ' + u.name + ' and the associated tasks and categories from database?' },
              class: 'btn btn-default' %>

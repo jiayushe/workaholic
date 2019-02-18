@@ -12,21 +12,24 @@
     <% if logged_in? %>
       <span class="dropdown user">
         <button class="btn btn-default dropdown-toggle" type="button" id="userMenuButton" data-toggle="dropdown">
+          <i class="fa fa-user-circle-o"></i>
           <% if current_user.name.blank? %>
             <%= current_user.email %>
           <% else %>
             <%= current_user.name %>
           <% end %>
         </button>
-        <div class="dropdown-menu">
-	  <%= link_to '<i class="fa fa-edit"></i> Profile'.html_safe, 
-              current_user, 
-	      class: "dropdown-item" %>
-	  <br> 
-	  <%= link_to '<i class="fa fa-trash"></i> Logout'.html_safe, 
-	      logout_path, method: :delete, 
-	      class: "dropdown-item",
-              data: {confirm: 'Do you want to log out?'}%>
+        <div class="dropdown-menu dropdown-menu-right dropdown-menu-min-width">
+            <%= link_to '<i class="fa fa-edit fa-fw"></i>&nbsp; Profile'.html_safe, 
+                current_user, 
+	            class: "dropdown-item bg-info text-white" %> 
+	        <%= link_to '<i class="fa fa-trash fa-fw"></i>&nbsp; Logout'.html_safe, 
+	            logout_path, method: :delete, 
+	            class: "dropdown-item bg-danger text-white",
+                data: {confirm: 'Do you want to log out?'} %>
+            <%= link_to '<i class="fa fa-keyboard-o fa-fw"></i>&nbsp; Admin'.html_safe,
+                admin_path,
+                class: "dropdown-item bg-warning text-white" %>
         </div>
       </span>
     <% end %>

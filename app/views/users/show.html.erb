@@ -3,10 +3,12 @@
 <hr>
 
 <div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
   <%= label_tag :email %>
   <%= text_field_tag :email, @user.email, class: 'form-control', disabled: "disabled" %>
 </div>
 <div class="form-group">
+  <span class="form-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
   <%= label_tag :name %>
   <%= text_field_tag :name, @user.name, class: 'form-control', disabled: "disabled" %>
 </div>

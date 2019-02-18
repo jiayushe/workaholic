@@ -6,19 +6,26 @@
 
 <%= form_for(:session, url: login_path) do |u| %>
   <div class="form-group">
+    <span class="form-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
     <%= u.label :email %>
-    <%= u.text_field :email, class:"form-control", required: true %>
+    <%= u.text_field :email, class:"form-control", placeholder: 'ben_leong@nus.edu.sg', required: true %>
   </div>
   <div class="form-group">
+    <span class="form-group-addon"><i class="fa fa-key fa-fw"></i></span>
     <%= u.label :password %>
-    <%= u.password_field :password, class:"form-control", required: true %>
+    <%= u.password_field :password, class:"form-control", placeholder: 'i_can_do_it',required: true %>
   </div>
   <%= u.submit "Log in", class:"btn btn-primary" %>
 <% end %>
 
 <hr>
 
-<h5><strong>Do not have a Workaholic account yet?</strong></h5>
+<ul class="fa-ul">
+  <li>
+  <i class="fa-li fa fa-spinner fa-spin"></i>
+  <h5><strong>Do not have a Workaholic account yet?</strong></h5>
+  </li>
+</ul>
 <%= link_to "Sign up and start exploring Workaholic", new_user_path, class: "btn btn-default" %>
 
 <%= render "footer" %>
