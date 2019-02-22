@@ -29,7 +29,6 @@ class ItemsController < ApplicationController
       flash.now[:danger] = "The following error(s) prohibited this task from being saved:\n\r ♣ " + @item.errors.full_messages.join("\n\r ♣ ")
       render 'new', status: :bad_request
     end
-    #render plain: params[:item].inspect
   end
 
   def update
@@ -45,8 +44,13 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = current_user.items.find(params[:id])
-    @item.destroy
- 
+    @item.destroy 
+    redirect_to items_path
+  end
+
+  def complete
+    @item = current_user.items.find(params[:id])
+    @item.update_attribute(:completed, !@item.read_attribute(:completed))
     redirect_to items_path
   end
 
@@ -55,12 +59,12 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:title, :details, :deadline, :level_of_importance)
     end
  
-    # Level_of_importance is the default column sorting mode
+    # Completed is the default column sorting mode
     def sort_column
       if current_user.items.column_names.include?(params[:sort])
         params[:sort]
       else
-        "level_of_importance"
+        "completed"
       end
     end
 

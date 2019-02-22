@@ -5,12 +5,12 @@
 <table class="table table-sm table-hover table-bordered table-striped">
   <thead class="thead-light">
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Tasks</th>
-      <th scope="col">Categories</th>
-      <th scope="col"></th>
+      <th scope="col"><i class="fa fa-hashtag"></i></th>
+      <th scope="col"><i class="fa fa-id-card"></i></th>
+      <th scope="col"><i class="fa fa-envelope"></i></th>
+      <th scope="col"><i class="fa fa-tasks"></i></th>
+      <th scope="col"><i class="fa fa-tags"></i></th>
+      <th scope="col"><i class="fa fa-navicon"></i></th>
     </tr>
   </thead>
   <tbody>
@@ -36,10 +36,10 @@
         </ol>
       </td>
       <td>
-	  <%= link_to '<i class="fa fa-trash"></i> Delete User'.html_safe, 
+	  <%= link_to '<i class="fa fa-trash"></i>'.html_safe, 
              user_path(u), method: :delete,
              data: { confirm: 'Delete user ' + u.name + ' and the associated tasks and categories from database?' },
-             class: 'btn btn-default' %>
+             class: 'btn btn-danger' %>
       </td>
     </tr>
     <% end %>

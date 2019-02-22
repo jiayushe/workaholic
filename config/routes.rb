@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   
   resources :items do
     resources :remarks
+    member do
+      get 'complete'
+    end
   end
 
   resources :categories
