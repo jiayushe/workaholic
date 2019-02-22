@@ -1,10 +1,10 @@
 <%= render "header" %>
-<h4><strong>Welcome to Workaholic, your personalised todo list manager!</strong></h4>
-<p>This is a web application designed for you to manage your daily tasks.</p>
-<p>Click below and start exploring!</p>
+<div align=center>
+<h4><strong>Welcome to <i class="fa fa-chevron-right"></i> Workaholic <i class="fa fa-chevron-left"></i>, your personalised todo list manager!</strong></h4>
+<p>This is a web application designed for you to manage your daily tasks. Click below and start exploring!</p>
 
 <div>
-<%= link_to 'My Workaholic'.html_safe, items_path, class: 'btn btn-primary' %>
+<%= link_to '<i class="fa fa-toggle-right"></i>  My Workaholic  <i class="fa fa-toggle-left"></i>'.html_safe, items_path, class: 'btn btn-primary' %>
 </div>
-
+</div>
 <%= render "footer" %>

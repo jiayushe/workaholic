@@ -7,25 +7,25 @@
         class: 'btn btn-primary', 
         data: { toggle: 'tooltip', placement: 'bottom' },
         title: 'New Category' %>
-    <%= link_to '<i class="fa fa-tasks"></i> Tasks'.html_safe, 
+    <%= link_to '<i class="fa fa-tasks"></i>'.html_safe, 
         items_path,
         class: 'btn btn-success', 
         data: { toggle: 'tooltip', placement: 'bottom'}, 
         title: 'Display Tasks' %>
-    <div class="input-group">
-    <span class="input-group-addon">
-        <i class='fa fa-search'></i>
-    </span>
+    <!span class="input-group">
+    <!span class="input-group-addon">
+        <!i class='fa fa-search'><!/i>
+    <!/span>
     <%= text_field_tag :search, 
         params[:search], 
         class: 'form-control', 
         placeholder: "Search categories" %>
-    </div>
+    <!/span>
     <%= button_tag(type: 'submit',
         class: 'btn btn-default',
         data: { toggle: 'tooltip', placement: 'bottom'},
         title: 'Search') do %>
-        <i class="fa fa-check"></i>
+        <i class="fa fa-search-plus"></i>
     <% end %>
   <% end %>
 </div>
@@ -35,7 +35,8 @@
     <tr>
       <th scope="col"><i class="fa fa-database"></i></th>
       <th scope="col"><i class="fa fa-tasks"></i></th>
-      <th scope="col"><i class="fa fa-navicon"></i></th>
+      <th scope="col"><i class="fa fa-angle-double-down"></i></th>
+      <th scope="col"><i class="fa fa-angle-double-down"></i></th>
     </tr>
 </thead>
 <tbody>
@@ -56,15 +57,17 @@
         </ol>
       </td>
       <td>
-        <%= link_to '<i class="fa fa-edit"></i>'.html_safe, 
+        <%= link_to '<i class="fa fa-edit fa-fw"></i>'.html_safe, 
             edit_category_path(c),
-            class: 'btn btn-primary',
+            class: 'btn btn-xs btn-primary',
             data: { toggle: 'tooltip', placement: 'bottom' },
             title: 'Edit' %>
-        <%= link_to '<i class="fa fa-trash"></i>'.html_safe, 
+      </td>
+      <td>
+        <%= link_to '<i class="fa fa-trash fa-fw"></i>'.html_safe, 
             category_path(c), 
             method: :delete, 
-            class: 'btn btn-danger',
+            class: 'btn btn-xs btn-danger',
             data: { confirm: 'Delete category?', toggle: 'tooltip', placement: 'bottom' },
             title: 'Delete' %>
       </td>

@@ -10,7 +10,7 @@
       <th scope="col"><i class="fa fa-envelope"></i></th>
       <th scope="col"><i class="fa fa-tasks"></i></th>
       <th scope="col"><i class="fa fa-tags"></i></th>
-      <th scope="col"><i class="fa fa-navicon"></i></th>
+      <th scope="col"><i class="fa fa-angle-double-down"></i></th>
     </tr>
   </thead>
   <tbody>
@@ -39,7 +39,7 @@
 	  <%= link_to '<i class="fa fa-trash"></i>'.html_safe, 
              user_path(u), method: :delete,
              data: { confirm: 'Delete user ' + u.name + ' and the associated tasks and categories from database?' },
-             class: 'btn btn-danger' %>
+             class: 'btn btn-xs btn-danger' %>
       </td>
     </tr>
     <% end %>
